@@ -1,0 +1,35 @@
+youtube-dl --audio-format mp3 -x --output "/home/choped/Music/Pal movil/%(title)s.%(ext)s" https://youtu.be/WqB1CDrOGrQ?si=DTDct3LfjHCeSiP-
+
+
+
+programa q usando un .txt con urls (q saco con outro programita de unha playlist) 
+ejecute ese comando hasta la saciedad
+
+
+
+esto ejecutase na consola de yt e fai cousas (descarga o .txt con todos os links)
+
+
+
+let goToBottom = setInterval(() => window.scrollBy(0, 400), 1000);
+
+clearInterval(goToBottom);
+    let arrayVideos = [];
+    console.log('\n'.repeat(50));
+    const links = document.querySelectorAll('a');
+    for (const link of links) {
+    if (link.id === "video-title") {
+        link.href = link.href.split('&list=')[0];
+        arrayVideos.push(link.href);
+        console.log(link.title + '\t' + link.href);
+    }
+    }
+
+let data = arrayVideos.join('\n');
+    let blob = new Blob([data], {type: 'text/csv'});
+    let elem = window.document.createElement('a');
+    elem.href = window.URL.createObjectURL(blob);
+    elem.download = 'my_data.txt';
+    document.body.appendChild(elem);
+    elem.click();
+    document.body.removeChild(elem);
